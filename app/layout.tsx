@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { PHProvider } from "@/components/PostHogProvider";
+import { ScrollTracker } from "@/components/ScrollTracker";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -105,7 +107,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.className} bg-gray-50`}>{children}</body>
+      <body className={`${inter.className} bg-gray-50`}>
+        <PHProvider>
+          <ScrollTracker />
+          {children}
+        </PHProvider>
+      </body>
     </html>
   );
 }

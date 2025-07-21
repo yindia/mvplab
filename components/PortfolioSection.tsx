@@ -18,58 +18,42 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "AI-Powered Analytics Dashboard",
-    description: "Real-time analytics platform with ML predictions for e-commerce businesses. Built with React, Python, and TensorFlow.",
+    title: "The SaaS Company",
+    description: "Revolutionary no-code infrastructure automation platform that empowers teams to deploy, manage, and scale cloud resources without writing a single line of code. Built with enterprise-grade security and seamless AWS integration.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-    tags: ["React", "Python", "TensorFlow", "AWS"],
-    category: "AI/ML",
+    tags: ["NextJs", "Terraform", "Golang", "AWS"],
+    category: "No Code",
     featured: true,
   },
   {
     id: 2,
-    title: "Healthcare Management System",
-    description: "Complete patient management solution with appointment scheduling, EMR, and billing integration.",
+    title: "Data Sherlock",
+    description: "AI-powered data intelligence platform using advanced RAG technology. Connect any database and ask natural language questions to get instant insights. Transforms complex SQL queries into conversational interactions for business teams.",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
-    tags: ["Next.js", "Node.js", "PostgreSQL", "Docker"],
-    category: "Healthcare",
+    tags: ["NextJs", "Kubernetes", "LLM"],
+    category: "LLM RAG",
     featured: true,
   },
   {
     id: 3,
-    title: "FinTech Payment Gateway",
-    description: "Secure payment processing platform handling millions of transactions daily with 99.9% uptime.",
+    title: "Intervyo",
+    description: "Next-generation AI interview preparation platform featuring realistic voice conversations. Practice with an intelligent voice agent that adapts to any tech role, providing real-time feedback and personalized coaching to ace your interviews.",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-    tags: ["Go", "Kubernetes", "Redis", "Stripe API"],
-    category: "FinTech",
+    tags: ["NextJS", "Kubernetes", "LiveKit", "Python"],
+    category: "Voice Agent",
     featured: true,
   },
   {
     id: 4,
-    title: "E-Learning Platform",
-    description: "Interactive online learning platform with video streaming, quizzes, and progress tracking.",
+    title: "AI Recruiter",
+    description: "Automated talent screening solution that revolutionizes hiring processes. Features web and phone-based AI voice agents that conduct initial interviews, assess technical skills, and provide detailed candidate insights to accelerate recruitment.",
     image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
-    tags: ["React", "GraphQL", "Node.js", "MongoDB"],
-    category: "EdTech",
-  },
-  {
-    id: 5,
-    title: "IoT Fleet Management",
-    description: "Real-time fleet tracking and management system with predictive maintenance alerts.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
-    tags: ["Python", "AWS IoT", "React", "PostgreSQL"],
-    category: "IoT",
-  },
-  {
-    id: 6,
-    title: "Social Media Analytics Tool",
-    description: "Comprehensive social media monitoring and analytics platform for brand management.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop",
-    tags: ["Next.js", "Python", "Redis", "Elasticsearch"],
-    category: "MarTech",
-  },
+    tags: ["NextJs", "Python", "Livekit", "Supabase"],
+    category: "Voice Agent",
+  }
 ];
 
-const categories = ["All", "AI/ML", "Healthcare", "FinTech", "EdTech", "IoT", "MarTech"];
+const categories = ["All", "LLM RAG", "Voice Agent", "No Code", "Re Branding"];
 
 export default function PortfolioSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");

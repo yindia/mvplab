@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { usePostHog } from "@/hooks/usePostHog";
 
 export default function PricingSection() {
   const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
+  const { trackButtonClick, trackEvent } = usePostHog();
 
   const plans = [
     {
@@ -142,6 +144,10 @@ export default function PricingSection() {
                         ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-2xl transform hover:-translate-y-0.5'
                         : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                     }`}
+                    onClick={() => {
+                      trackButtonClick('Book a Call', `Pricing - ${plan.name}`);
+                      trackEvent('pricing_plan_selected', { plan_name: plan.name, plan_price: plan.price });
+                    }}
                   >
                     <span>Book a Call</span>
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,7 +172,11 @@ export default function PricingSection() {
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Need a custom solution?</h3>
               <p className="text-sm sm:text-base text-gray-600">Let's discuss your specific requirements</p>
             </div>
-            <a href="#contact" className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap">
+            <a 
+              href="#contact" 
+              className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold text-sm sm:text-base hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+              onClick={() => trackButtonClick('Get Custom Quote', 'Pricing - Custom')}
+            >
               <span>Get Custom Quote</span>
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
