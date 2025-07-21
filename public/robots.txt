@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mvplab.dev/sitemap.xml
+
+# Crawl-delay (in seconds)
+Crawl-delay: 1
+
+# Disallow access to admin or private directories if any
+# Disallow: /admin/
+# Disallow: /private/
