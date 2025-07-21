@@ -114,7 +114,7 @@ export default function TeamSection() {
               <div className="flex gap-4 px-4 pb-4">
                 {[
                   { name: "React", logo: TechLogos.React, color: "from-cyan-400 to-cyan-600" },
-                  { name: "Next.js", logo: TechLogos.Nextjs, color: "from-gray-700 to-gray-900" },
+                  { name: "Next.js", logo: TechLogos.NextJS, color: "from-gray-700 to-gray-900" },
                   { name: "Python", logo: TechLogos.Python, color: "from-blue-500 to-yellow-500" },
                   { name: "Go", logo: TechLogos.Go, color: "from-cyan-500 to-blue-600" },
                   { name: "Kubernetes", logo: TechLogos.Kubernetes, color: "from-blue-600 to-blue-800" },

@@ -60,7 +60,7 @@ export default function HeroSection() {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
             </span>
             <span className="text-gray-800 font-semibold">
-              🚀 <AnimatedCounter end={15} suffix="+" /> Projects Successfully Delivered
+              🚀 <AnimatedCounter end={5} suffix="+" /> Projects Successfully Delivered
             </span>
           </div>
 
@@ -110,7 +110,7 @@ export default function HeroSection() {
           <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center group" style={{ animation: 'bounce-in 0.8s ease-out 1.2s both' }}>
               <div className="text-5xl font-bold mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
-                <AnimatedCounter end={15} suffix="+" />
+                <AnimatedCounter end={5} suffix="+" />
               </div>
               <div className="text-gray-600 font-medium">Projects Delivered</div>
             </div>

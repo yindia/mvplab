@@ -27,6 +27,9 @@ export default function Navigation() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
+            <a href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-sm">
+              About
+            </a>
             <a href="/work" className="text-gray-700 hover:text-blue-600 transition-colors font-medium text-sm">
               Work
             </a>
@@ -69,6 +72,9 @@ export default function Navigation() {
 
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200 glass-effect rounded-b-2xl">
+            <a href="/about" className="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all">
+              About
+            </a>
             <a href="/work" className="block py-3 px-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all">
               Work
             </a>
