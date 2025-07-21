@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import AnimatedCounter from "./AnimatedCounter";
 import TypewriterText from "./TypewriterText";
+import { usePostHog } from "@/hooks/usePostHog";
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { trackButtonClick } = usePostHog();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -13,6 +16,29 @@ export default function HeroSection() {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById('hero-visual');
+      if (!heroSection) return;
+
+      const rect = heroSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate how much of the hero visual is visible
+      const visibleTop = Math.max(0, rect.top);
+      const visibleBottom = Math.min(viewportHeight, rect.bottom);
+      const visibleHeight = visibleBottom - visibleTop;
+      
+      // Calculate scroll progress (0 to 1)
+      const progress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -88,7 +114,11 @@ export default function HeroSection() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center" style={{ animation: 'fadeInUp 0.8s ease-out 1s both' }}>
-            <a href="#contact" className="group relative btn-primary ripple magnetic-button">
+            <a 
+              href="#contact" 
+              className="group relative btn-primary ripple magnetic-button"
+              onClick={() => trackButtonClick('Book a Call', 'Hero')}
+            >
               <span className="relative z-10 flex items-center">
                 Book a Call
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,7 +126,11 @@ export default function HeroSection() {
                 </svg>
               </span>
             </a>
-            <a href="/work" className="group relative overflow-hidden bg-white text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 gradient-border ripple magnetic-button">
+            <a 
+              href="/work" 
+              className="group relative overflow-hidden bg-white text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 gradient-border ripple magnetic-button"
+              onClick={() => trackButtonClick('See Our Work', 'Hero')}
+            >
               <span className="relative z-10 flex items-center">
                 See Our Work
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,31 +164,180 @@ export default function HeroSection() {
         </div>
 
         {/* Hero Visual */}
-        <div className="mt-20 relative" style={{ animation: 'fadeInUp 1s ease-out 1.8s both' }}>
+        <div id="hero-visual" className="mt-20 relative" style={{ animation: 'fadeInUp 1s ease-out 1.8s both' }}>
           <div className="relative mx-auto max-w-6xl">
             {/* Main hero card */}
             <div className="relative glass-light rounded-3xl p-2 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
               <div className="relative rounded-2xl overflow-hidden">
-                {/* Dashboard mockup */}
-                <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 p-8">
-                  <div className="bg-gray-900/50 backdrop-blur rounded-xl p-6 h-full">
-                    <div className="flex items-center space-x-2 mb-6">
-                      <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                {/* Kanban Board Mockup */}
+                <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 p-4 sm:p-6 md:p-8 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-grid-white/[0.02]"></div>
+                  <div className="relative h-full">
+                    {/* Window controls */}
+                    <div className="flex items-center space-x-2 mb-4">
+                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div className="grid grid-cols-3 gap-4 h-full">
-                      <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg p-4 hover:scale-105 transition-transform cursor-pointer">
-                        <div className="h-2 bg-white/20 rounded mb-2 animate-pulse"></div>
-                        <div className="h-2 bg-white/10 rounded w-3/4 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    
+                    {/* Kanban Columns */}
+                    <div className="grid grid-cols-3 gap-3 sm:gap-4 h-full">
+                      {/* To Do Column */}
+                      <div className="bg-gray-900/50 backdrop-blur rounded-xl p-3 sm:p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="text-sm sm:text-base font-semibold text-white/90">To Do</h4>
+                          <span className="text-xs text-blue-400 font-medium bg-blue-400/20 px-2 py-0.5 rounded-full">
+                            {scrollProgress < 0.33 ? 2 : scrollProgress < 0.66 ? 1 : 0}
+                          </span>
+                        </div>
+                        <div className="space-y-2" id="todo-column">
+                          {/* Card 1 - moves to In Progress at 33% scroll */}
+                          <div 
+                            className="kanban-card-1 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                            style={{
+                              opacity: scrollProgress < 0.33 ? 1 : 0,
+                              transform: scrollProgress < 0.33 ? 'translateY(0)' : 'translateY(-20px)',
+                            }}
+                          >
+                            <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">Design System</p>
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-400"></div>
+                              <span className="text-xs text-white/60">High Priority</span>
+                            </div>
+                          </div>
+                          {/* Card 2 - moves to In Progress at 66% scroll */}
+                          <div 
+                            className="kanban-card-2 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                            style={{
+                              opacity: scrollProgress < 0.66 ? 1 : 0,
+                              transform: scrollProgress < 0.66 ? 'translateY(0)' : 'translateY(-20px)',
+                            }}
+                          >
+                            <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">API Integration</p>
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-400"></div>
+                              <span className="text-xs text-white/60">Medium</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg p-4 hover:scale-105 transition-transform cursor-pointer">
-                        <div className="h-2 bg-white/20 rounded mb-2 animate-pulse"></div>
-                        <div className="h-2 bg-white/10 rounded w-1/2 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                      
+                      {/* In Progress Column */}
+                      <div className="bg-gray-900/50 backdrop-blur rounded-xl p-3 sm:p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="text-sm sm:text-base font-semibold text-white/90">In Progress</h4>
+                          <span className="text-xs text-purple-400 font-medium bg-purple-400/20 px-2 py-0.5 rounded-full">
+                            {scrollProgress < 0.33 ? 1 : scrollProgress < 0.5 ? 3 : scrollProgress < 0.66 ? 2 : scrollProgress < 0.8 ? 1 : 0}
+                          </span>
+                        </div>
+                        <div className="space-y-2" id="progress-column">
+                          {/* Card 1 appears here after 33% scroll */}
+                          {scrollProgress >= 0.33 && scrollProgress < 0.8 && (
+                            <div 
+                              className="kanban-card-1 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                              style={{
+                                opacity: 1,
+                                transform: 'translateY(0)',
+                              }}
+                            >
+                              <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">Design System</p>
+                              <div className="w-full bg-white/20 rounded-full h-1.5 mb-2">
+                                <div className="bg-gradient-to-r from-blue-400 to-purple-400 h-1.5 rounded-full" style={{ width: '45%' }}></div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-400"></div>
+                                <span className="text-xs text-white/60">In Progress</span>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Original card */}
+                          <div 
+                            className="kanban-card-3 bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                            style={{
+                              opacity: scrollProgress < 0.5 ? 1 : 0,
+                              transform: scrollProgress < 0.5 ? 'translateY(0)' : 'translateY(-20px)',
+                            }}
+                          >
+                            <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">User Dashboard</p>
+                            <div className="w-full bg-white/20 rounded-full h-1.5 mb-2">
+                              <div className="bg-gradient-to-r from-orange-400 to-red-400 h-1.5 rounded-full" style={{ width: '60%' }}></div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-400 to-red-400"></div>
+                              <span className="text-xs text-white/60">60% Done</span>
+                            </div>
+                          </div>
+                          
+                          {/* Card 2 appears here after 66% scroll */}
+                          {scrollProgress >= 0.66 && (
+                            <div 
+                              className="kanban-card-2 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                              style={{
+                                opacity: 1,
+                                transform: 'translateY(0)',
+                              }}
+                            >
+                              <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">API Integration</p>
+                              <div className="w-full bg-white/20 rounded-full h-1.5 mb-2">
+                                <div className="bg-gradient-to-r from-purple-400 to-pink-400 h-1.5 rounded-full" style={{ width: '30%' }}></div>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-pink-400"></div>
+                                <span className="text-xs text-white/60">In Progress</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className="bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-lg p-4 hover:scale-105 transition-transform cursor-pointer">
-                        <div className="h-2 bg-white/20 rounded mb-2 animate-pulse"></div>
-                        <div className="h-2 bg-white/10 rounded w-2/3 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                      
+                      {/* Done Column */}
+                      <div className="bg-gray-900/50 backdrop-blur rounded-xl p-3 sm:p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h4 className="text-sm sm:text-base font-semibold text-white/90">Done</h4>
+                          <span className="text-xs text-green-400 font-medium bg-green-400/20 px-2 py-0.5 rounded-full">
+                            {scrollProgress < 0.5 ? 0 : scrollProgress < 0.8 ? 1 : 2}
+                          </span>
+                        </div>
+                        <div className="space-y-2" id="done-column">
+                          {/* Card 3 moves here after 50% scroll */}
+                          {scrollProgress >= 0.5 && (
+                            <div 
+                              className="kanban-card-3 bg-gradient-to-br from-green-500/20 to-teal-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                              style={{
+                                opacity: 1,
+                                transform: 'translateY(0)',
+                              }}
+                            >
+                              <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">User Dashboard</p>
+                              <div className="flex items-center gap-2">
+                                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                                <span className="text-xs text-white/60">Completed</span>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Card 1 moves here after 80% scroll */}
+                          {scrollProgress >= 0.8 && (
+                            <div 
+                              className="kanban-card-1 bg-gradient-to-br from-green-500/20 to-teal-500/20 backdrop-blur-sm rounded-lg p-3 border border-white/10 transition-all duration-700"
+                              style={{
+                                opacity: 1,
+                                transform: 'translateY(0)',
+                              }}
+                            >
+                              <p className="text-xs sm:text-sm text-white/80 font-medium mb-2">Design System</p>
+                              <div className="flex items-center gap-2">
+                                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                                <span className="text-xs text-white/60">Completed</span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
