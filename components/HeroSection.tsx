@@ -96,7 +96,7 @@ export default function HeroSection() {
                 </svg>
               </span>
             </a>
-            <a href="#portfolio" className="group relative overflow-hidden bg-white text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 gradient-border ripple magnetic-button">
+            <a href="/work" className="group relative overflow-hidden bg-white text-gray-900 px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 gradient-border ripple magnetic-button">
               <span className="relative z-10 flex items-center">
                 See Our Work
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
