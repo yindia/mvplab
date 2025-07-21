@@ -13,135 +13,153 @@ interface Project {
   link?: string;
   github?: string;
   featured?: boolean;
+  video?: string;
+  demoUrl?: string;
+  impact?: string;
+  timeline?: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
     title: "The SaaS Company",
-    description: "Revolutionary no-code infrastructure automation platform that empowers teams to deploy, manage, and scale cloud resources without writing a single line of code. Built with enterprise-grade security and seamless AWS integration.",
+    description: "Revolutionary no-code infrastructure automation platform that empowers teams to deploy, manage, and scale cloud resources without writing a single line of code.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     tags: ["NextJs", "Terraform", "Golang", "AWS"],
     category: "No Code",
     featured: true,
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Replace with actual video URL
+    impact: "40% faster deployment",
+    timeline: "3 weeks",
   },
   {
     id: 2,
     title: "Data Sherlock",
-    description: "AI-powered data intelligence platform using advanced RAG technology. Connect any database and ask natural language questions to get instant insights. Transforms complex SQL queries into conversational interactions for business teams.",
+    description: "AI-powered data intelligence platform using advanced RAG technology. Connect any database and ask questions in plain English.",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
     tags: ["NextJs", "Kubernetes", "LLM"],
-    category: "LLM RAG",
+    category: "AI Platform",
     featured: true,
+    video: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Replace with actual video URL
+    impact: "5x faster insights",
+    timeline: "4 weeks",
   },
   {
     id: 3,
     title: "Intervyo",
-    description: "Next-generation AI interview preparation platform featuring realistic voice conversations. Practice with an intelligent voice agent that adapts to any tech role, providing real-time feedback and personalized coaching to ace your interviews.",
+    description: "Next-generation AI interview preparation platform featuring realistic voice conversations that adapt to any tech role.",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-    tags: ["NextJS", "Kubernetes", "LiveKit", "Python"],
-    category: "Voice Agent",
+    tags: ["NextJS", "LiveKit", "Python"],
+    category: "Voice AI",
     featured: true,
+    demoUrl: "https://intervyo.ai",
+    impact: "85% success rate",
+    timeline: "2 weeks",
   },
   {
     id: 4,
     title: "AI Recruiter",
-    description: "Automated talent screening solution that revolutionizes hiring processes. Features web and phone-based AI voice agents that conduct initial interviews, assess technical skills, and provide detailed candidate insights to accelerate recruitment.",
+    description: "Automated talent screening with AI voice agents that conduct interviews and provide detailed candidate insights.",
     image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
-    tags: ["NextJs", "Python", "Livekit", "Supabase"],
-    category: "Voice Agent",
+    tags: ["NextJs", "Python", "Supabase"],
+    category: "Voice AI",
+    demoUrl: "https://airecruiter.io",
+    impact: "10x faster hiring",
+    timeline: "3 weeks",
   }
 ];
 
-const categories = ["All", "LLM RAG", "Voice Agent", "No Code", "Re Branding"];
-
 export default function PortfolioSection() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const { ref: sectionRef, isInView } = useScrollAnimation({ threshold: 0.1 });
 
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
-
   return (
-    <section ref={sectionRef as any} className="py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container">
+    <section ref={sectionRef as any} className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
+      </div>
+
+      <div className="container relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <div className={`inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 glass-light rounded-full mb-4 md:mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold text-sm sm:text-base">Our Work</span>
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className={`inline-flex items-center px-6 py-3 glass-light rounded-full mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold">Launching Tomorrow's Success Stories</span>
           </div>
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
-            <span className="text-gray-900">Projects That </span>
-            <span className="gradient-text">Define Excellence</span>
+          
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
+            <span className="text-gray-900">Quality Over </span>
+            <span className="gradient-text">Quantity</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            We've helped startups and enterprises build products that users love. 
-            Here's a showcase of our recent work.
+          
+          <p className={`text-xl text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed ${isInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
+            We're not your typical dev shop. We're a new breed of builders focused on 
+            creating exceptional products that define categories, not just fill portfolios.
           </p>
+
+          {/* Stats */}
+          <div className={`grid grid-cols-3 gap-8 max-w-lg mx-auto ${isInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">100%</div>
+              <div className="text-sm text-gray-600">Launch Success</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">14</div>
+              <div className="text-sm text-gray-600">Days Average</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">4</div>
+              <div className="text-sm text-gray-600">Game Changers</div>
+            </div>
+          </div>
         </div>
 
-        {/* Category Filter */}
-        <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-12 px-4 sm:px-0 ${isInView ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-medium text-sm sm:text-base transition-all duration-300 ${
-                selectedCategory === category
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105'
-                  : 'bg-white text-gray-600 hover:text-gray-900 shadow-md hover:shadow-lg'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredProjects.map((project, index) => (
+        {/* Featured Projects - Bento Grid Style */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-20">
+          {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`group relative h-full ${isInView ? 'scroll-fade-up in-view' : 'opacity-0'}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
+              className={`group relative ${isInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full flex flex-col">
-                {/* Project Image */}
-                <div className="relative h-64 overflow-hidden flex-shrink-0">
+              <div className="relative h-full bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
+                {/* Project Image with Overlay */}
+                <div className="relative h-64 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold rounded-full shadow-lg">
-                      Featured
-                    </div>
-                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
 
                   {/* Hover Actions */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        className="p-3 bg-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
+                    {project.video && (
+                      <button
+                        onClick={() => {
+                          setSelectedProject(project);
+                          setShowVideoModal(true);
+                        }}
+                        className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
                       >
-                        <svg className="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                      </a>
+                      </button>
                     )}
-                    {project.github && (
+                    {project.demoUrl && (
                       <a
-                        href={project.github}
-                        className="p-3 bg-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 bg-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
                       >
-                        <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
                     )}
@@ -149,20 +167,31 @@ export default function PortfolioSection() {
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 flex-grow">
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
+                      <p className="text-sm text-gray-500">Shipped in {project.timeline}</p>
+                    </div>
+                    <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                      project.category === 'Voice AI' ? 'bg-purple-100 text-purple-700' :
+                      project.category === 'AI Platform' ? 'bg-blue-100 text-blue-700' :
+                      'bg-green-100 text-green-700'
+                    }`}>
+                      {project.category}
+                    </span>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
                     {project.description}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mt-auto">
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full hover:bg-gray-200 transition-colors"
+                        className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-gray-200 transition-colors"
                       >
                         {tag}
                       </span>
@@ -174,24 +203,68 @@ export default function PortfolioSection() {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-20 text-center">
-          <div className={`inline-flex flex-col items-center ${isInView ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
-            <p className="text-gray-600 mb-6 text-lg">
-              Have a project in mind? Let's build something amazing together.
-            </p>
-            <a
-              href="/#contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-            >
-              Start Your Project
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
+        {/* CTA Section */}
+        <div className="text-center max-w-3xl mx-auto">
+          <div className={`inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-full mb-8 ${isInView ? 'animate-bounce-in' : 'opacity-0'}`} style={{ animationDelay: '0.5s' }}>
+            <svg className="w-5 h-5 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <span className="text-purple-700 font-semibold">Every Project is a Category Leader</span>
           </div>
+          
+          <h2 className={`text-3xl md:text-4xl font-bold text-gray-900 mb-6 ${isInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.6s' }}>
+            Your Project Could Be <span className="gradient-text">Next</span>
+          </h2>
+          
+          <p className={`text-xl text-gray-600 mb-10 leading-relaxed ${isInView ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '0.7s' }}>
+            We select projects that have the potential to redefine industries. 
+            If you're building something revolutionary, let's talk.
+          </p>
+          
+          <a
+            href="/#contact"
+            className={`inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ${isInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+            style={{ animationDelay: '0.8s' }}
+          >
+            Start Your Success Story
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {showVideoModal && selectedProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75" onClick={() => setShowVideoModal(false)}>
+          <div className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b">
+              <h3 className="text-xl font-bold text-gray-900">{selectedProject.title}</h3>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Video Container */}
+            <div className="relative pt-[56.25%] bg-gray-900">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={selectedProject.video}
+                title={selectedProject.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

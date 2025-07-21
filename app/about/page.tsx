@@ -21,7 +21,18 @@ export default function AboutPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-16">
+      <main className="pt-16 bg-white min-h-screen">
+        {/* Page Header */}
+        <div className="py-12 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="text-gray-900">About </span>
+              <span className="gradient-text">mvplab</span>
+            </h1>
+            <p className="text-xl text-gray-600">Building the future, one MVP at a time</p>
+          </div>
+        </div>
+        
         {/* <FounderSection /> */}
         <TeamSection />
         <TimelineSection />

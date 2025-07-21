@@ -14,13 +14,14 @@ export default function PricingSection() {
       period: "/ project",
       description: "Perfect for validating your idea quickly",
       features: [
-        "Core features only",
-        "Basic UI/UX design",
-        "2 weeks development",
-        "Basic testing",
+        "Core MVP features",
+        "Clean UI/UX design",
+        "14-day development",
+        "Basic testing suite",
         "Deployment support",
-        "1 month support",
+        "30-day post-launch support",
       ],
+      included: [],
       popular: false,
       gradient: "from-gray-600 to-gray-800",
       bgGradient: "from-gray-50 to-gray-100",
@@ -32,19 +33,38 @@ export default function PricingSection() {
       period: "/ project",
       description: "For founders ready to scale fast",
       features: [
-        "All MVP features",
-        "Advanced UI/UX design",
-        "Continuous development",
-        "Comprehensive testing",
+        "Premium UI/UX design",
+        "User analytics dashboard",
+        "A/B testing setup",
         "Performance optimization",
-        "3 months support",
-        "Analytics integration",
-        "Basic SEO setup",
+        "SEO & marketing pages",
+        "90-day support & iterations",
       ],
+      included: ["Everything in Standard"],
       popular: true,
       gradient: "from-blue-600 to-indigo-600",
       bgGradient: "from-blue-50 to-indigo-50",
       iconGradient: "from-blue-400 to-indigo-600",
+    },
+    {
+      name: "MVP Funding",
+      price: "$3,999",
+      period: "+ 5% equity",
+      description: "We become your technical co-founder",
+      features: [
+        "Product strategy sessions",
+        "Technical roadmap planning",
+        "Investor pitch deck support",
+        "CTO-level guidance",
+        "Team hiring assistance",
+        "Ongoing partnership",
+      ],
+      included: ["Everything in Growth"],
+      popular: false,
+      gradient: "from-purple-600 to-pink-600",
+      bgGradient: "from-purple-50 to-pink-50",
+      iconGradient: "from-purple-400 to-pink-600",
+      isPartnership: true,
     },
   ];
 
@@ -70,7 +90,7 @@ export default function PricingSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -91,10 +111,25 @@ export default function PricingSection() {
                 </div>
               )}
               
+              {/* Partnership badge */}
+              {plan.isPartnership && (
+                <div className="absolute -top-3 sm:-top-4 md:-top-5 left-0 right-0 flex justify-center z-10">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur animate-pulse"></div>
+                    <div className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 rounded-full text-[9px] sm:text-[10px] md:text-xs font-bold shadow-2xl flex items-center space-x-1 animate-wiggle">
+                      <span className="text-[10px] sm:text-xs md:text-sm">🤝</span>
+                      <span>PARTNERSHIP</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               {/* Card */}
-              <div className={`relative h-full ${
+              <div className={`relative h-full flex flex-col ${
                 plan.popular 
                   ? 'bg-gradient-to-br from-blue-50/50 to-purple-50/50 shadow-2xl border border-blue-200' 
+                  : plan.isPartnership
+                  ? 'bg-gradient-to-br from-purple-50/50 to-pink-50/50 shadow-2xl border border-purple-200'
                   : 'bg-white shadow-xl'
               } rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden transition-all duration-500`}>
                 {/* Background decoration */}
@@ -102,7 +137,7 @@ export default function PricingSection() {
                 <div className="absolute top-0 right-0 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-gradient-to-br from-white/20 to-transparent rounded-full -translate-y-16 translate-x-16 sm:-translate-y-24 sm:translate-x-24 md:-translate-y-32 md:translate-x-32"></div>
                 
                 {/* Content */}
-                <div className="relative z-10 p-4 sm:p-5 md:p-6 lg:p-8">
+                <div className="relative z-10 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col h-full">
                   {/* Header */}
                   <div className="text-center mb-4 sm:mb-6 md:mb-8">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2">
@@ -122,6 +157,17 @@ export default function PricingSection() {
                     <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto mt-4 sm:mt-6"></div>
                   </div>
                   
+                  {/* Included from previous plan */}
+                  {plan.included.length > 0 && (
+                    <div className="mb-4 pb-4 border-b border-gray-200">
+                      {plan.included.map((item, idx) => (
+                        <p key={idx} className="text-sm text-gray-500 italic">
+                          + {item}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                  
                   {/* Features */}
                   <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 md:mb-8">
                     {plan.features.map((feature, featureIndex) => (
@@ -136,24 +182,28 @@ export default function PricingSection() {
                     ))}
                   </ul>
                   
-                  {/* CTA Button */}
-                  <a
-                    href="#contact"
-                    className={`w-full text-center py-2.5 sm:py-3 md:py-4 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-[13px] sm:text-sm md:text-base transition-all duration-300 flex items-center justify-center group ${
-                      plan.popular
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-2xl transform hover:-translate-y-0.5'
-                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                    }`}
-                    onClick={() => {
-                      trackButtonClick('Book a Call', `Pricing - ${plan.name}`);
-                      trackEvent('pricing_plan_selected', { plan_name: plan.name, plan_price: plan.price });
-                    }}
-                  >
-                    <span>Book a Call</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
+                  {/* CTA Button - pushed to bottom */}
+                  <div className="mt-auto">
+                    <a
+                      href="#contact"
+                      className={`w-full text-center py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl md:rounded-2xl font-semibold text-[13px] sm:text-sm transition-all duration-300 flex items-center justify-center group ${
+                        plan.popular
+                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-2xl transform hover:-translate-y-0.5'
+                          : plan.isPartnership
+                          ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl transform hover:-translate-y-0.5'
+                          : 'bg-gradient-to-r from-gray-600 to-gray-800 text-white hover:from-gray-700 hover:to-gray-900 hover:shadow-xl transform hover:-translate-y-0.5'
+                      }`}
+                      onClick={() => {
+                        trackButtonClick(plan.isPartnership ? 'Apply for Partnership' : 'Book a Call', `Pricing - ${plan.name}`);
+                        trackEvent('pricing_plan_selected', { plan_name: plan.name, plan_price: plan.price });
+                      }}
+                    >
+                      <span>{plan.isPartnership ? 'Apply for Partnership' : 'Book a Call'}</span>
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
                 
                 {/* Hover glow effect */}
