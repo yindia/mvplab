@@ -47,15 +47,15 @@ export default function ServicesSection() {
   return (
     <section id="services" className="section-padding bg-gradient-to-b from-gray-50 to-white">
       <div className="container">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-purple-50 rounded-full mb-6">
-            <span className="text-purple-600 font-medium">Our Services</span>
+        <div className="text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-purple-50 rounded-full mb-4 md:mb-6">
+            <span className="text-purple-600 font-medium text-sm sm:text-base">Our Services</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             <span className="text-gray-900">Our </span>
             <span className="gradient-text">Services</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             From concept to launch, we offer comprehensive services to bring your vision to life.
           </p>
         </div>

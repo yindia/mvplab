@@ -71,19 +71,19 @@ export default function TimelineSection() {
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-indigo-200 via-purple-200 to-pink-200"></div>
+            <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-indigo-200 via-purple-200 to-pink-200"></div>
 
             {/* Timeline events */}
             {timelineEvents.map((event, index) => (
               <div
                 key={index}
-                className={`relative flex items-center mb-12 ${
-                  index % 2 === 0 ? 'justify-start' : 'justify-end'
+                className={`relative flex items-center mb-8 md:mb-12 ${
+                  index % 2 === 0 ? 'md:justify-start justify-start' : 'md:justify-end justify-start'
                 } ${isInView ? 'scroll-fade-up in-view' : 'opacity-0'}`}
                 style={{ transitionDelay: `${index * 0.2}s` }}
               >
                 {/* Content */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                <div className={`w-full md:w-5/12 pl-20 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
                   <div className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${
                     index % 2 === 0 ? 'ml-auto' : 'mr-auto'
                   }`}>
@@ -96,7 +96,7 @@ export default function TimelineSection() {
                 </div>
 
                 {/* Center icon */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 z-10">
                   <div className={`w-16 h-16 bg-gradient-to-br ${event.color} rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300 cursor-pointer`}>
                     <span className="text-2xl">{event.icon}</span>
                   </div>

@@ -50,21 +50,21 @@ export default function TeamSection() {
       </div>
 
       <div className="container relative z-10">
-        <div className="text-center mb-16">
-          <div className={`inline-flex items-center px-6 py-3 glass-light rounded-full mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold">Meet the Team</span>
+        <div className="text-center mb-12 md:mb-16">
+          <div className={`inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 glass-light rounded-full mb-4 md:mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold text-sm sm:text-base">Meet the Team</span>
           </div>
-          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
             <span className="text-gray-900">Built by </span>
             <span className="gradient-text">Cracked Engineers</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             We're not just developers. We're startup veterans, open source contributors, and scaling experts who live and breathe fast execution.
           </p>
         </div>
 
         {/* Achievement Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
           {achievements.map((achievement, index) => (
             <div
               key={index}
@@ -72,7 +72,7 @@ export default function TeamSection() {
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500 blur-xl ${achievement.gradient}"></div>
-              <div className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="relative bg-white rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                 <div className={`w-14 h-14 bg-gradient-to-br ${achievement.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                   <span className="text-2xl">{achievement.icon}</span>
                 </div>
@@ -88,7 +88,7 @@ export default function TeamSection() {
         </div>
 
         {/* Stats */}
-        <div className={`glass-light rounded-3xl p-8 md:p-12 ${isInView ? 'animate-slide-in-bottom' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
+        <div className={`glass-light rounded-3xl p-6 sm:p-8 md:p-12 ${isInView ? 'animate-slide-in-bottom' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
@@ -144,9 +144,9 @@ export default function TeamSection() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 mb-6">Want to work with engineers who actually ship?</p>
-          <a href="#contact" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+        <div className="mt-8 md:mt-12 text-center">
+          <p className="text-gray-600 mb-4 md:mb-6">Want to work with engineers who actually ship?</p>
+          <a href="/#contact" className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-sm sm:text-base">
             Let's Talk
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

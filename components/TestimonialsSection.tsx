@@ -2,9 +2,9 @@ export default function TestimonialsSection() {
   const testimonials = [
     {
       content: "Working with this team was a game-changer for our startup. The designs not only looked incredible but directly contributed to our conversion rates increasing by 43%. Worth every penny.",
-      author: "Sarah Chen",
+      author: "Vasu Srivastava",
       role: "Founder & CEO",
-      company: "Vorkel AI",
+      company: "Intervyo.ai",
       image: "SC",
       gradient: "from-blue-400 to-purple-600",
     },
@@ -13,14 +13,14 @@ export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="section-padding bg-gradient-to-b from-white to-gray-50">
       <div className="container">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-orange-50 rounded-full mb-6">
-            <span className="text-orange-600 font-medium">Client Success</span>
+        <div className="text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-orange-50 rounded-full mb-4 md:mb-6">
+            <span className="text-orange-600 font-medium text-sm sm:text-base">Client Success</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             <span className="gradient-text">Testimonials</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Don't just take our word for it. Here's what our clients have to say.
           </p>
         </div>
@@ -31,14 +31,14 @@ export default function TestimonialsSection() {
               {/* Quote decoration */}
               <div className="absolute -top-10 -left-10 text-9xl text-blue-100 font-serif select-none">"</div>
               
-              <div className="card relative z-10 text-center p-10 lg:p-12">
+              <div className="card relative z-10 text-center p-6 sm:p-8 md:p-10 lg:p-12">
                 <div className="mb-8">
                   <div className={`w-20 h-20 bg-gradient-to-br ${testimonial.gradient} rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold shadow-lg`}>
                     {testimonial.image}
                   </div>
                 </div>
                 
-                <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed italic">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 md:mb-8 leading-relaxed italic">
                   "{testimonial.content}"
                 </p>
                 

@@ -64,7 +64,7 @@ export default function HeroSection() {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8">
             <span className="text-gray-900" style={{ animation: 'slide-in-bottom 0.8s ease-out 0.2s both' }}>
               We Build MVPs that
             </span>
@@ -82,9 +82,9 @@ export default function HeroSection() {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed" style={{ animation: 'fadeInUp 0.8s ease-out 0.8s both' }}>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0" style={{ animation: 'fadeInUp 0.8s ease-out 0.8s both' }}>
             Transform your vision into a market-ready product with our expert team. 
-            <span className="block mt-2 text-lg text-gray-500">From idea to launch in weeks, not months.</span>
+            <span className="block mt-2 text-base sm:text-lg text-gray-500">From idea to launch in weeks, not months.</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center" style={{ animation: 'fadeInUp 0.8s ease-out 1s both' }}>
@@ -107,24 +107,24 @@ export default function HeroSection() {
           </div>
 
           {/* Animated Stats */}
-          <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className="mt-12 md:mt-20 grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto px-4 sm:px-0">
             <div className="text-center group" style={{ animation: 'bounce-in 0.8s ease-out 1.2s both' }}>
-              <div className="text-5xl font-bold mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
                 <AnimatedCounter end={5} suffix="+" />
               </div>
-              <div className="text-gray-600 font-medium">Projects Delivered</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Projects Delivered</div>
             </div>
             <div className="text-center group" style={{ animation: 'bounce-in 0.8s ease-out 1.4s both' }}>
-              <div className="text-5xl font-bold mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
                 <AnimatedCounter end={98} suffix="%" />
               </div>
-              <div className="text-gray-600 font-medium">Client Satisfaction</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Client Satisfaction</div>
             </div>
             <div className="text-center group" style={{ animation: 'bounce-in 0.8s ease-out 1.6s both' }}>
-              <div className="text-5xl font-bold mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 md:mb-2 gradient-text group-hover:scale-110 transition-transform duration-300">
                 <AnimatedCounter end={2} suffix="-4" />
               </div>
-              <div className="text-gray-600 font-medium">Weeks to Launch</div>
+              <div className="text-sm sm:text-base text-gray-600 font-medium">Weeks to Launch</div>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function HeroSection() {
               </div>
               
               {/* Floating UI elements with glassmorphism */}
-              <div className="absolute -top-8 -left-8 glass-light rounded-2xl shadow-2xl p-5 animate-float hover:scale-105 transition-transform cursor-pointer" style={{ animation: 'rotate-in 0.8s ease-out 2s both' }}>
+              <div className="hidden md:block absolute -top-8 -left-8 glass-light rounded-2xl shadow-2xl p-5 animate-float hover:scale-105 transition-transform cursor-pointer" style={{ animation: 'rotate-in 0.8s ease-out 2s both' }}>
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg animate-pulse-slow">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -176,7 +176,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="absolute -bottom-8 -right-8 glass-light rounded-2xl shadow-2xl p-5 animate-float hover:scale-105 transition-transform cursor-pointer" style={{ animationDelay: '3s', animation: 'rotate-in 0.8s ease-out 2.2s both' }}>
+              <div className="hidden md:block absolute -bottom-8 -right-8 glass-light rounded-2xl shadow-2xl p-5 animate-float hover:scale-105 transition-transform cursor-pointer" style={{ animationDelay: '3s', animation: 'rotate-in 0.8s ease-out 2.2s both' }}>
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg animate-pulse-slow">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,7 +190,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="absolute top-1/2 -left-12 glass-light rounded-2xl shadow-2xl p-5 animate-float hover:scale-105 transition-transform cursor-pointer" style={{ animationDelay: '5s', animation: 'rotate-in 0.8s ease-out 2.4s both' }}>
+              <div className="hidden lg:block absolute top-1/2 -left-12 glass-light rounded-2xl shadow-2xl p-5 animate-float hover:scale-105 transition-transform cursor-pointer" style={{ animationDelay: '5s', animation: 'rotate-in 0.8s ease-out 2.4s both' }}>
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg animate-pulse-slow">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

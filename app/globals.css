@@ -443,3 +443,30 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-padding {
+    @apply py-12 px-4;
+  }
+  
+  .container {
+    @apply px-4;
+  }
+  
+  /* Adjust floating elements on mobile */
+  .glass-light,
+  .glass-dark {
+    @apply shadow-lg;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    @apply px-3;
+  }
+  
+  .section-padding {
+    @apply py-10 px-3;
+  }
+}

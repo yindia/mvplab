@@ -39,14 +39,14 @@ export default function FAQSection() {
   return (
     <section id="faq" className="section-padding">
       <div className="container">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-purple-50 rounded-full mb-6">
-            <span className="text-purple-600 font-medium">FAQs</span>
+        <div className="text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-purple-50 rounded-full mb-4 md:mb-6">
+            <span className="text-purple-600 font-medium text-sm sm:text-base">FAQs</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             <span className="gradient-text">FAQs</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Everything you need to know about working with us.
           </p>
         </div>

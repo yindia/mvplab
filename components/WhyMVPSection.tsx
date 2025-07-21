@@ -48,22 +48,22 @@ export default function WhyMVPSection() {
       </div>
       
       <div className="container relative z-10">
-        <div className="text-center mb-20">
-          <div className={`inline-flex items-center px-6 py-3 glass-light rounded-full mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-bold">Why Choose Us</span>
+        <div className="text-center mb-12 md:mb-20">
+          <div className={`inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 glass-light rounded-full mb-4 sm:mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-bold text-sm sm:text-base">Why Choose Us</span>
           </div>
-          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
             <span className="text-gray-900">Why Choose </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
               mvplab
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             We combine cutting-edge technology with proven development practices to deliver MVPs that stand out in the market.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <div
               key={index}

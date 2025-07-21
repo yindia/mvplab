@@ -80,30 +80,30 @@ export default function PortfolioSection() {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <section ref={sectionRef as any} className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section ref={sectionRef as any} className="py-12 md:py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className={`inline-flex items-center px-6 py-3 glass-light rounded-full mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold">Our Work</span>
+        <div className="text-center mb-12 md:mb-16">
+          <div className={`inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 glass-light rounded-full mb-4 md:mb-6 backdrop-blur-sm ${isInView ? 'animate-bounce-in' : 'opacity-0'}`}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-bold text-sm sm:text-base">Our Work</span>
           </div>
-          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 ${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
             <span className="text-gray-900">Projects That </span>
             <span className="gradient-text">Define Excellence</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             We've helped startups and enterprises build products that users love. 
             Here's a showcase of our recent work.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className={`flex flex-wrap justify-center gap-3 mb-12 ${isInView ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
+        <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-12 px-4 sm:px-0 ${isInView ? 'animate-slide-in-bottom' : 'opacity-0'}`}>
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-medium text-sm sm:text-base transition-all duration-300 ${
                 selectedCategory === category
                   ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105'
                   : 'bg-white text-gray-600 hover:text-gray-900 shadow-md hover:shadow-lg'
@@ -115,7 +115,7 @@ export default function PortfolioSection() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}

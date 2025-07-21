@@ -56,19 +56,19 @@ export default function PricingSection() {
       </div>
       
       <div className="container relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-6 py-3 glass-light rounded-full mb-6 backdrop-blur-sm">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600 font-bold">Transparent Pricing</span>
+        <div className="text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 glass-light rounded-full mb-4 md:mb-6 backdrop-blur-sm">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600 font-bold text-sm sm:text-base">Transparent Pricing</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
             <span className="gradient-text">Pricing</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             Choose the plan that fits your needs. No hidden fees, no surprises.
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto lg:items-center">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto lg:items-center px-4 sm:px-0">
           {plans.map((plan, index) => (
             <div
               key={index}
