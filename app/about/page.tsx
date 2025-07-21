@@ -8,7 +8,7 @@ export default function AboutPage() {
     <>
       <Navigation />
       <main className="pt-16">
-        <FounderSection />
+        {/* <FounderSection /> */}
         <TeamSection />
         <TimelineSection />
       </main>
