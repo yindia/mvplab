@@ -12,51 +12,27 @@ export default function TestimonialsSection() {
     {
       content: "MVP delivered in 14 days. Conversion up 43%. Best decision for our startup.",
       author: "Vasu Srivastava",
-      role: "Founder, Intervyo.ai",
+      role: "Founder, Recutr.dev",
       image: "VS",
       rating: 5,
       highlight: "43% conversion increase",
     },
     {
       content: "From idea to funded startup in 3 weeks. The speed and quality were unmatched.",
-      author: "Sarah Chen",
+      author: "Janit",
       role: "CEO, DataSherlock",
       image: "SC",
       rating: 5,
-      highlight: "Secured seed funding",
+      highlight: "14 Days to MVP",
     },
     {
       content: "Our AI voice agent handles 5x more calls. Game-changing for our operations.",
-      author: "Michael Rodriguez",
-      role: "CTO, AI Recruiter",
+      author: "Nakul",
+      role: "CTO, The SaaS Company",
       image: "MR",
       rating: 5,
       highlight: "5x capacity increase",
-    },
-    {
-      content: "Technical partner who actually gets startups. They think like founders.",
-      author: "Lisa Wang",
-      role: "Founder, TechFlow",
-      image: "LW",
-      rating: 5,
-      highlight: "True partnership",
-    },
-    {
-      content: "Went from mockup to production in record time. Investors were impressed.",
-      author: "James Park",
-      role: "CEO, FinanceAI",
-      image: "JP",
-      rating: 5,
-      highlight: "Investor ready MVP",
-    },
-    {
-      content: "They don't just code, they strategize. Like having a CTO from day one.",
-      author: "Emma Thompson",
-      role: "Founder, HealthTech Pro",
-      image: "ET",
-      rating: 5,
-      highlight: "Strategic guidance",
-    },
+    }
   ];
 
   const gradients = [
