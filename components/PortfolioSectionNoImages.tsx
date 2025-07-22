@@ -7,7 +7,6 @@ interface Project {
   id: number;
   title: string;
   description: string;
-  image: string;
   tags: string[];
   category: string;
   link?: string;
@@ -17,6 +16,8 @@ interface Project {
   demoUrl?: string;
   impact?: string;
   timeline?: string;
+  gradient: string;
+  icon: string;
 }
 
 const projects: Project[] = [
@@ -24,53 +25,57 @@ const projects: Project[] = [
     id: 1,
     title: "The SaaS Company",
     description: "Revolutionary no-code infrastructure automation platform that empowers teams to deploy, manage, and scale cloud resources without writing a single line of code.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     tags: ["NextJs", "Terraform", "Golang", "AWS"],
     category: "No Code",
     featured: true,
-    video: "https://player.vimeo.com/video/1103378345?badge=0", // Replace with actual video URL
+    video: "https://player.vimeo.com/video/1103378345?badge=0",
     impact: "40% faster deployment",
     timeline: "3 weeks",
+    gradient: "from-blue-500 to-cyan-600",
+    icon: "M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
   },
   {
     id: 2,
     title: "Data Sherlock",
     description: "AI-powered data intelligence platform using advanced RAG technology. Connect any database and ask questions in plain English.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
     tags: ["NextJs", "Kubernetes", "LLM"],
     category: "AI Platform",
     featured: false,
-    demoUrl: "https://datasherlock-website.vercel.app/", // Replace with actual video URL
+    demoUrl: "https://datasherlock-website.vercel.app/",
     impact: "5x faster insights",
     timeline: "4 weeks",
+    gradient: "from-purple-500 to-pink-600",
+    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
   },
   {
     id: 3,
     title: "Intervyo",
     description: "Next-generation AI interview preparation platform featuring realistic voice conversations that adapt to any tech role.",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
     tags: ["NextJS", "LiveKit", "Python"],
     category: "Voice AI",
     featured: true,
     demoUrl: "https://agaz.vercel.app/",
     impact: "85% success rate",
     timeline: "2 weeks",
+    gradient: "from-green-500 to-teal-600",
+    icon: "M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
   },
   {
     id: 4,
     title: "AI Recruiter",
     description: "Automated talent screening with AI voice agents that conduct interviews and provide detailed candidate insights.",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
     tags: ["NextJs", "Python", "Supabase"],
     category: "Voice AI",
     featured: true,
-    demoUrl: "https://ats-zeta-one.vercel.app/dashboard",
+    demoUrl: "https://airecruiter.io",
     impact: "10x faster hiring",
     timeline: "3 weeks",
+    gradient: "from-orange-500 to-red-600",
+    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
   }
 ];
 
-export default function PortfolioSection() {
+export default function PortfolioSectionNoImages() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const { ref: sectionRef, isInView } = useScrollAnimation({ threshold: 0.1 });
@@ -127,17 +132,36 @@ export default function PortfolioSection() {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative h-full bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
-                {/* Project Image with Overlay */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                {/* Gradient Background with Icon */}
+                <div className={`relative h-64 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
+                  {/* Decorative Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute -top-24 -right-24 w-96 h-96 bg-white rounded-full transform rotate-45"></div>
+                    <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white rounded-full"></div>
+                  </div>
+                  
+                  {/* Project Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <svg className="w-32 h-32 text-white/20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={project.icon} />
+                    </svg>
+                  </div>
+
+                  {/* Category Badge */}
+                  <div className="absolute top-6 left-6">
+                    <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full text-sm">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  {/* Impact Metric */}
+                  <div className="absolute bottom-6 right-6 text-right">
+                    <div className="text-white/80 text-sm font-medium">Impact</div>
+                    <div className="text-white text-2xl font-bold">{project.impact}</div>
+                  </div>
 
                   {/* Hover Actions */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/20">
                     {project.video && (
                       <button
                         onClick={() => {
@@ -174,13 +198,6 @@ export default function PortfolioSection() {
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
                       <p className="text-sm text-gray-500">Shipped in {project.timeline}</p>
                     </div>
-                    <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                      project.category === 'Voice AI' ? 'bg-purple-100 text-purple-700' :
-                      project.category === 'AI Platform' ? 'bg-blue-100 text-blue-700' :
-                      'bg-green-100 text-green-700'
-                    }`}>
-                      {project.category}
-                    </span>
                   </div>
                   
                   <p className="text-gray-600 mb-6 leading-relaxed">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PortfolioSection from "@/components/PortfolioSection";
+import PortfolioSectionNoImages from "@/components/PortfolioSectionNoImages";
 import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function WorkPage() {
     <>
       <Navigation />
       <main className="pt-16">
-        <PortfolioSection />
+        <PortfolioSectionNoImages />
       </main>
     </>
   );
