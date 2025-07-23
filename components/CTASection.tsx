@@ -79,6 +79,9 @@ export default function CTASection() {
               className="group relative inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-blue-600 bg-white rounded-full hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 animate-pulse-slow"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
+              data-cal-namespace="30min"
+              data-cal-link="mvplab/30min"
+              data-cal-config='{"layout":"month_view"}'
             >
               {/* 3D effect background */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>

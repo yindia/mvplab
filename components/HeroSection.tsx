@@ -118,6 +118,9 @@ export default function HeroSection() {
               href="#contact" 
               className="group relative btn-primary ripple magnetic-button"
               onClick={() => trackButtonClick('Book a Call', 'Hero')}
+              data-cal-namespace="30min"
+              data-cal-link="mvplab/30min"
+              data-cal-config='{"layout":"month_view"}'
             >
               <span className="relative z-10 flex items-center">
                 Book a Call

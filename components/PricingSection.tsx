@@ -193,6 +193,9 @@ export default function PricingSection() {
                           ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-2xl transform hover:-translate-y-0.5'
                           : 'bg-gradient-to-r from-gray-600 to-gray-800 text-white hover:from-gray-700 hover:to-gray-900 hover:shadow-xl transform hover:-translate-y-0.5'
                       }`}
+                      data-cal-namespace="30min"
+                      data-cal-link="mvplab/30min"
+                      data-cal-config='{"layout":"month_view"}'
                       onClick={() => {
                         trackButtonClick(plan.isPartnership ? 'Apply for Partnership' : 'Book a Call', `Pricing - ${plan.name}`);
                         trackEvent('pricing_plan_selected', { plan_name: plan.name, plan_price: plan.price });
